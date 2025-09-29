@@ -2,7 +2,7 @@ import { signToken } from "../helpers/jwt.helper.js";
 import { UserModel } from "../models/mongoose/user.model.js";
 import { hashPassword } from "../utils/crypto.util.js";
 import { comparePassword } from "../utils/crypto.util.js";
-import { generateToken } from "../utils/jwt.util.js";
+import { signToken } from "../utils/jwt.util.js";
 
 export const register = async (req, res) => {
   const { username, email, password, profile } = req.body;
