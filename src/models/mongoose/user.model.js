@@ -18,12 +18,28 @@ const UserSchema = new Schema(
       enum: ["secretary", "administrator"],
       default: "secretary",
     },
+    profile: {
+      employee_number: { type: String, required: true, unique: true },
+      first_name: { type: String, required: true },
+      last_name: { type: String, required: true, minlength: 2, maxlength: 50 },
+      phone: { type: String, required: false },
+    },
     deletedAt: { type: Date, default: null },
-    // ! FALTA COMPLETAR ACA
   },
-  { timestamps: true }
+  {
+    versionKey: false,
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
 
-// ! FALTA COMPLETAR ACA
+
+UserSchema.virtual("assets", {
+  ref: "Asset",
+  localField: "_id",
+  foreignField: "categories",
+});
+
 
 export const UserModel = model("User", UserSchema);

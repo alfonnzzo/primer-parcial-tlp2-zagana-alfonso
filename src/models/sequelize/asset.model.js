@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+import { UserModel } from "./user.model";
 
 export const AssetModel = sequelize.define("Asset", {
   inventory_number: {
@@ -16,6 +17,16 @@ export const AssetModel = sequelize.define("Asset", {
   },
   acquisition_date: { type: DataTypes.DATE, allowNull: false },
   acquisition_value: { type: DataTypes.DECIMAL, allowNull: false },
+});
+
+UserModel.hasMany(AssetModel, {
+  foreignKey: "user_id",
+  as: "assets",
+  onDelete: "CASCADE",
+});
+AssetModel.belongsTo(UserModel, {
+  foreignKey: "user_id",
+  as: "responsible",
 });
 
 // TODO: Relación muchos a uno con User (muchos Assets pueden tener un mismo responsable)

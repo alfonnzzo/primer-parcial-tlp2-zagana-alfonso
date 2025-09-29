@@ -9,4 +9,5 @@ export const UserModel = sequelize.define("User", {
     allowNull: false,
     defaultValue: "secretary",
   },
+  paranoid: true,
 });
