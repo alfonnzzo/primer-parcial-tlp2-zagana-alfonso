@@ -38,7 +38,7 @@ const UserSchema = new Schema(
 UserSchema.virtual("assets", {
   ref: "Asset",
   localField: "_id",
-  foreignField: "categories",
+  foreignField: "user",
 });
 
 
